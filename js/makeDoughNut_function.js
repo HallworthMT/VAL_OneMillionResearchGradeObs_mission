@@ -115,7 +115,7 @@ svg.append("text")
 /* add text to center of the donut plot */
 svg.append("text")
 .attr("text-anchor", "middle")
-.attr('font-size', '2em')
+.attr('font-size', '1em')
 .attr('y', -40)
 .text(`Observations:`);
 

@@ -12,6 +12,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
@@ -19,8 +20,11 @@
 <!-- HERE iS WHERE WE LOAD 'modules' or "source" scripts of javascript code -->
 <script type='module' src="js/makeDoughNut_function.js"></script>
 <script type='module' src="js/current_count_tracker_static.js"></script>
+<script type='module' src="js/current_needsid_breakdown.js"></script>
 <script type='module' src="js/countdown_timer_function.js"></script>
 <script type='module' src="js/leaderboard.js"></script>
+<script type='module' src="js/countdown_timer_function.js"></script>
+<script type='module' src="js/progress_bar_goal.js"></script>
 
 
 
@@ -90,39 +94,88 @@
 </style>
 
 </head>
-<!--<body background="/img/VAL_onemill_banner.jpg" style="background-repeat: no-repeat;">-->
-<body>
+<body> <!-- background="/img/MtMansfield_AutumnSnow_KPM.jpg" style="background-repeat: no-repeat; background-size: cover;">-->
 
-<div class="row" style="display: block; margin: auto; text-align: center; width: 100%">
-<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif">Help us reach 1,000,000 research grade observations in Vermont!</h1>
+<div class="row" style="display: block; margin: auto; text-align: center; width: 90%;">
+<div background="/img/MtMansfield_AutumnSnow_KPM.jpg;" style="background-repeat: no-repeat; background-size: cover;"> 
+  <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Vermont's 1,000,000 research grade challenge!</h1>
+</div>
 </div>
 
-<div class = "row" style="align-content: center";>
- <div id="countdown" style="font-size: 25pt; margin: 20px;"></div>
+<div style="position: absolute; left: 33%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
+Help <a href="https://val.vtecostudies.org/" target="_blank">Vermont Atlas of Life</a> reach <strong>1,000,000 research grade observations!</strong> 
+<br><br>
+<a href="https://www.inaturalist.org/projects/vermont-atlas-of-life" target="_blank">iNaturalist</a> observations become candidates for 
+Research Grade when they have a photo, date, and coordinates. They become "Research Grade" when the community agrees on an identification. 
+If the community has multiple opinions on what taxon has been observed, iNaturalist chooses a taxon from all the proposed taxa (a higher-level
+taxon containing the proposed taxa) that more than 2/3 of the voters agree with.
+<br><br>
+<strong>We need your help to reach our goal of 1,000,000 research grade observations from Vermont before 2025!</strong>.
+
+We don't have much time left to reach our goal. 2025 is right around the corner - we only have  
+<strong><span id="countdown" style="font-size: 12pt;"></span></strong> left!
 </div>
 
-<div style = "position: absolute; left: 80%; top: 20%; height: 12.5%; width: 25%" >
-<p>whoop, whoop </p><span id="NumberIdentifiers"></span><p> have id'd organisms in Vermont since 11-01-2024!</p>
-</div>
-
-<div style = "position: absolute; left: 20%; top: 20%; height: 12.5%; width: 25%" >
+<div style = "position: absolute; left: 10%; top: 20%; height: 12.5%; width: 25%" >
 <div id="currentObsDoughnut"></div>
 </div>
 
-<div style = "position: absolute; left: 45%; top: 20%;">
-<div id="OpenPieDude"></div>
+
+<div style = "position: absolute; left: 5%; right: 33%; top: 20%; height: 12.5%; width: 25%" >
+<div id="progress-container" style="width: 100%; background-color: #e0e0e0; border-radius: 10px;">
+  <div id="progress-bar" style="width: 0%; height: 30px; background-color: #006054; border-radius: 10px;"></div>
+</div>
+<p id="progress-text">Progress: 0%</p>
 </div>
 
-<div class = "col">
+<div class = "row" style="align-content: center";>
+
+</div>
+
+<div style = "position: absolute; left: 67%; top: 25%; height: 12.5%; width: 25%" >
+<h4>Everyone's doing it - join in the fun!</h4>
+<p><span id="NumberIdentifiers" style="font-size: 2em"></span> users have identified observations since 11-01-2024!</p>
+</div>
+
+
+<div style="position: absolute; top: 40%; left: 33%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
+<p>Percentage of observations for each iconic taxon that need additional identifications to reach research grade</p>
+<div style="align-content: center;" id="open_pie_me_please"></div>
+
 <div>
-  <p style="font-size: 28pt">Research grade observations:</p> <span id="CurrentNeedsID" style="font-size: 45pt; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></span>
+ <p>Follow the links below to start identifying observations within the most needed groups</p> 
+ <ul>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Plantae&place_id=47" target="_blank"> Plants</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Insecta&place_id=47" target="_blank"> Insects</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Arachnida&place_id=47" target="_blank"> Spiders & Allies</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Fungi&place_id=47" target="_blank"> Fungi</a> </li>
+ </ul>
+ </div>
+</div>
+
+
+<div style="position: absolute; left: 67%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
+  <p><strong>Don't know where to start?</strong></p>
+  Here are some helpful guides and links to get you started
+   <ul>
+    <li><a href="https://help.inaturalist.org/en/support/solutions/articles/151000171681-how-to-use-the-identify-page" target="_blank">iNaturalist's How to Identify</a> </li>
+    <li><a href=" https://help.inaturalist.org/en/support/solutions/articles/151000170788-how-to-use-the-identify-page-video-tutorial" target="_blank"> iNaturalist's video tutorial</a> </li>
+    <li><a href="https://forum.inaturalist.org/t/identification-etiquette-on-inaturalist-wiki/1503" target="_blank"> Identifying Etiquette</a> </li>
+   </ul>
+   </div>
+  </div>
+
+<div class = "col">
+<div style="border-color: #333; padding: 5px; border-radius: 5px;">
+<h4>Current count:</h4>
+<div id="CurrentNeedsID" style="font-size: 12pt; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></div>
 </div>
 </div>
 </div>
 
 </div>
 <div  style = "position: absolute; top: 38%; left: 80%; height: 12.5%; width: 25%" >
-<h1>Leaderboard</h1>
+<h1>Identification <br>Leaderboard</h1>
 <table id="identifierTable">
   <thead>
       <tr>

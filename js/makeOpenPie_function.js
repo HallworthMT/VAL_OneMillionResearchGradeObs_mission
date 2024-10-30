@@ -1,35 +1,31 @@
 var width = 300;
-        
-var data = [{value: 45, label: "label_1", color: '#ff0000'},
-            {value: 33, label: "label_2", color: '#00ff00'},
-            {value: 66, label: "label_3", color: '#0000ff'},
-            {value: 50, label: "label_4", color: '#ffff00'},
-            {value: 90, label: "label_5", color: '#ff0099'}];
+var arcSize = (6 * width / 100);
+var innerRadius = arcSize * 3;            
 
-render_open_pie({data: data,
-                 htmlID: "OpenPieDude"});
-                 
-function render_open_pie({data,
+                var data = [
+                    {value: 45, label: "label_1", color: '#ff0000'},
+                    {value: 33, label: "label_2", color: '#00ff00'},
+                    {value: 66, label: "label_3", color: '#0000ff'},
+                    {value: 50, label: "label_4", color: '#ffff00'},
+                    {value: 90, label: "label_5", color: '#ff0099'}
+                ]; 
+
+  
+function render_open_pie({data=data,
                           htmlID=null,
                           width_val=300,
-                          height_val=300}) {
+                          height_val = 300}) {
+                    
+                    var arcSize = (6 * width_val / 100);
+                    var innerRadius = arcSize * 3;
 
-          var arcSize = (6 * width_val / 100);
-          var innerRadius = arcSize * 3; 
-          var svg = d3.select(htmlID)
-                      .append('svg')
-                      .attr('width', width_val)
-                      .attr('height', height_val);
+                    var svg = d3.select('#'+htmlID).append('svg').attr('width', width).attr('height', width);
 
-         var arcs = data.map(function (obj, i) {
-                        return d3.svg.arc()
-                         .innerRadius(i * arcSize + innerRadius)
-                         .outerRadius((i + 1) * arcSize - (width_val / 100) + innerRadius);
+                    var arcs = data.map(function (obj, i) {
+                        return d3.svg.arc().innerRadius(i * arcSize + innerRadius).outerRadius((i + 1) * arcSize - (width / 100) + innerRadius);
                     });
                     var arcsGrey = data.map(function (obj, i) {
-                        return d3.svg.arc()
-                               .innerRadius(i * arcSize + (innerRadius + ((arcSize / 2) - 2)))
-                               .outerRadius((i + 1) * arcSize - ((arcSize / 2)) + (innerRadius));
+                        return d3.svg.arc().innerRadius(i * arcSize + (innerRadius + ((arcSize / 2) - 2))).outerRadius((i + 1) * arcSize - ((arcSize / 2)) + (innerRadius));
                     });
 
                     var pieData = data.map(function (obj, i) {

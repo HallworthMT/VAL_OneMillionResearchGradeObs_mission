@@ -72,18 +72,8 @@ Promise.all([fetch(qTotalObs),
           makeDoughNut({exportData: exportData,
                         export_OBS: export_OBS,
                         htmlID: "currentObsDoughnut",
-                        width: 700,
-                        height: 700}); })
-        .then(function(){
-          var data = [{value: 45, label: "label_1", color: '#ff0000'},
-            {value: 33, label: "label_2", color: '#00ff00'},
-            {value: 66, label: "label_3", color: '#0000ff'},
-            {value: 50, label: "label_4", color: '#ffff00'},
-            {value: 90, label: "label_5", color: '#ff0099'}];
-
-          render_open_pie({data: data,
-                           htmlID: "open_pie_me_please",
-                           width: 700});})
+                        width: 400,
+                        height: 400}); })
           .then(function(){
           // Print the needs to text within HTML 
         document.getElementById("CurrentNeedsID").innerHTML =  exportData.Research.toLocaleString();
