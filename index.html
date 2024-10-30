@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/> <!-- resolve 'character encoding' error -->
+
+<!-- HERE WE source "packages" to use in the html doc -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/custom.css" rel="styesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/tether.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<!-- load js modules -->
+<!-- HERE iS WHERE WE LOAD 'modules' or "source" scripts of javascript code -->
+<script type='module' src="js/makeDoughNut_function.js"></script>
+<script type='module' src="js/current_count_tracker_static.js"></script>
+<script type='module' src="js/countdown_timer_function.js"></script>
+<script type='module' src="js/leaderboard.js"></script>
+
+
+
+<!-- Create a div where the graph will take place -->
+<style>
+.activeTOOL {                                                        /* NEW */
+        background: #eee;                                               /* NEW */
+        box-shadow: 0 0 5px #999999;                                    /* NEW */
+        color: #333;                                                    /* NEW */
+        display: none;                                                  /* NEW */
+        font-size: 12px;                                                /* NEW */
+        left: 130px;                                                    /* NEW */
+        padding: 3px;                                                  /* NEW */
+        position: absolute;                                             /* NEW */
+        text-align: center;                                             /* NEW */
+        top: 95px;                                                      /* NEW */
+        width: 80px;                                                    /* NEW */
+        z-index: 10;                                                    /* NEW */
+      }
+
+
+ /* Style the table */
+ table {
+            width: 10%;
+            height: 50%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+        th, td {
+            padding: 3px;
+           /* border: 1px solid #ddd; */
+            border-radius: 5px;
+            height: 5px;
+        }
+        th {
+            text-align: center;
+            background-color: darkgreen;
+            color: #ddd;
+        }
+        tr {
+          height: 5px;
+          padding: 1px;
+        }
+        /* Center the image and make it circular */
+        td img {
+            border-radius: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30px;
+            width: 30px;
+        }
+        /* Left-align the username column */
+        td.username {
+            text-align: left;
+        }
+        /* Center-align the first and last columns */
+        td, th {
+            text-align: center;
+        }
+        /* Right-align the count column */
+        td.count {
+            text-align: center;
+        } 
+        tr:nth-child(even){background-color: #f2f2f2;}
+        tr:hover {background-color: #ddd;}
+</style>
+
+</head>
+<!--<body background="/img/VAL_onemill_banner.jpg" style="background-repeat: no-repeat;">-->
+<body>
+
+<div class="row" style="display: block; margin: auto; text-align: center; width: 100%">
+<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif">Help us reach 1,000,000 research grade observations in Vermont!</h1>
+</div>
+
+<div class = "row" style="align-content: center";>
+ <div id="countdown" style="font-size: 25pt; margin: 20px;"></div>
+</div>
+
+<div style = "position: absolute; left: 80%; top: 20%; height: 12.5%; width: 25%" >
+<p>whoop, whoop </p><span id="NumberIdentifiers"></span><p> have id'd organisms in Vermont since 11-01-2024!</p>
+</div>
+
+<div style = "position: absolute; left: 20%; top: 20%; height: 12.5%; width: 25%" >
+<div id="currentObsDoughnut"></div>
+</div>
+
+<div style = "position: absolute; left: 45%; top: 20%;">
+<div id="OpenPieDude"></div>
+</div>
+
+<div class = "col">
+<div>
+  <p style="font-size: 28pt">Research grade observations:</p> <span id="CurrentNeedsID" style="font-size: 45pt; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></span>
+</div>
+</div>
+</div>
+
+</div>
+<div  style = "position: absolute; top: 38%; left: 80%; height: 12.5%; width: 25%" >
+<h1>Leaderboard</h1>
+<table id="identifierTable">
+  <thead>
+      <tr>
+          <th></th>
+          <th>Username</th>
+          <th>Identifications</th>
+      </tr>
+  </thead>
+  <tbody>
+      <!-- JavaScript will populate this section -->
+  </tbody>
+</table>
+</div>
+</body>
+
+</html>
