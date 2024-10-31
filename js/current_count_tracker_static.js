@@ -72,8 +72,9 @@ Promise.all([fetch(qTotalObs),
           makeDoughNut({exportData: exportData,
                         export_OBS: export_OBS,
                         htmlID: "currentObsDoughnut",
-                        width: 400,
-                        height: 400}); })
+                        width: 410,
+                        height: 410,
+                        margin: 5}); })
           .then(function(){
           // Print the needs to text within HTML 
         document.getElementById("CurrentNeedsID").innerHTML =  exportData.Research.toLocaleString();
