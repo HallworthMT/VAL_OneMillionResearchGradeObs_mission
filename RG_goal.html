@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/> <!-- resolve 'character encoding' error -->
+
+<!-- HERE WE source "packages" to use in the html doc -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/custom.css" rel="styesheet">
+
+<script src="js/jquery.min.js"></script>
+<script src="js/tether.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/moment.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<!-- load js modules -->
+<!-- HERE iS WHERE WE LOAD 'modules' or "source" scripts of javascript code -->
+<script type='module' src="js/makeDoughNut_function.js"></script>
+<script type='module' src="js/current_count_tracker_static.js"></script>
+<script type='module' src="js/current_needsid_breakdown.js"></script>
+<script type='module' src="js/countdown_timer_function.js"></script>
+<script type='module' src="js/leaderboard.js"></script>
+<script type='module' src="js/countdown_timer_function.js"></script>
+<script type='module' src="js/progress_bar_goal.js"></script>
+
+
+
+<!-- Create a div where the graph will take place -->
+<style>
+.activeTOOL {                                                        /* NEW */
+        background: #eee;                                               /* NEW */
+        box-shadow: 0 0 5px #999999;                                    /* NEW */
+        color: #333;                                                    /* NEW */
+        display: none;                                                  /* NEW */
+        font-size: 12px;                                                /* NEW */
+        left: 130px;                                                    /* NEW */
+        padding: 3px;                                                  /* NEW */
+        position: absolute;                                             /* NEW */
+        text-align: center;                                             /* NEW */
+        top: 95px;                                                      /* NEW */
+        width: 80px;                                                    /* NEW */
+        z-index: 10;                                                    /* NEW */
+      }
+
+
+ /* Style the table */
+ table {
+            width: 15%;
+            height: 50%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+        th, td {
+            padding: 3px;
+           /* border: 1px solid #ddd; */
+            border-radius: 5px;
+            height: 5px;
+        }
+        th {
+            text-align: center;
+            background-color: darkgreen;
+            color: #ddd;
+        }
+        tr {
+          height: 5px;
+          padding: 1px;
+        }
+        /* Center the image and make it circular */
+        td img {
+            border-radius: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30px;
+            width: 30px;
+        }
+        /* Left-align the username column */
+        td.username {
+            text-align: left;
+        }
+        /* Center-align the first and last columns */
+        td, th {
+            text-align: center;
+        }
+        /* Right-align the count column */
+        td.count {
+            text-align: center;
+        } 
+        tr:nth-child(even){background-color: #f2f2f2;}
+        tr:hover {background-color: #ddd;}
+  #goal {
+  font-size: 24px;
+  text-align: right;
+  float: right;
+  color:#006054;
+  @media only screen and (max-width : 640px) {
+    text-align: center;  
+  }}
+  #currentcount {
+  font-size: 24px;
+  text-align: center;
+  color:#006054;
+  @media only screen and (max-width : 640px) {
+    text-align: center;  
+  }}
+
+  .goal-stat {
+  float: left;
+  text-align: left;
+  font-size: 24px;
+  color:#006054;
+ /* padding-left: 38px;
+  margin: -35px; */
+  @media only screen and (max-width : 640px) {
+    text-align: center;
+  }
+}
+
+</style>
+
+</head>
+<body> <!-- background="/img/MtMansfield_AutumnSnow_KPM.jpg" style="background-repeat: no-repeat; background-size: cover;">-->
+
+<div class="container text-center">
+  <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Vermont's 1,000,000 research grade challenge!</h1>
+</div>
+
+<div class="container-fluid">
+ <div class="row row-no-gutters">
+   <div class="col-sm-4">
+    <div class = "row row-no-gutters">
+    <a href="https://val.vtecostudies.org/" target="_blank"><img src="img/VAL new VCE-LOGO_300dpi_CMYK.jpg" style="margin: auto; display: block; width: 75%"></a>     
+    </div>
+    <div class="row" style="padding: 20px; display: flex; justify-content: space-between;">
+        <div class="goal-stat">Start: 852,949</div>
+        <div id="goal" class="goal" style="text-align: right;">1,000,000</div>
+        <div id="progress-container" style="width: 100%; background-color: #e0e0e0; border-radius: 10px;">
+          <div id="progress-bar" style="width: 0%; height: 30px; background-color: #006054; border-radius: 10px;"></div>
+        </div>
+        <p id="progress-text">Progress: 0%</p>
+        <h3 style="text-align: right;">Current total: <span id="CurrentNeedsID" style="color: #006054;"></span></h3>  
+    </div>
+   </div>
+   <div class="col-sm-4">
+    <div class="container bg-light p-4 my-3 rounded" style="background: #e0e0e0;">
+Help <a href="https://val.vtecostudies.org/" target="_blank">Vermont Atlas of Life</a> reach <strong>1,000,000 research grade observations!</strong> 
+<br><br>
+<a href="https://www.inaturalist.org/projects/vermont-atlas-of-life" target="_blank">iNaturalist</a> observations become candidates for 
+Research Grade when they have a photo, date, and coordinates. They become "Research Grade" when the community agrees on an identification. 
+If the community has multiple opinions on what taxon has been observed, iNaturalist chooses a taxon from all the proposed taxa (a higher-level
+taxon containing the proposed taxa) that more than 2/3 of the voters agree with.
+<br><br>
+<strong>We need your help to reach our goal of 1,000,000 research grade observations from Vermont before 2025!</strong>.
+
+We don't have much time left to reach our goal. 2025 is right around the corner - we only have  
+<strong><span id="countdown" style="font-size: 12pt;"></span></strong> left!
+</div>
+    </div>
+    <div class="col-sm-4">
+    <div class="row row-no-gutters">
+     <div style="align-content: center; background-color:  #e0e0e0; border-radius: 5px; padding: 5px; border-color: black;">
+            <h4>Don't know where to start?</h4>
+            We've got you covered. Below are helpful guides to get you started.
+             <ul>
+              <li><a href="https://help.inaturalist.org/en/support/solutions/articles/151000171681-how-to-use-the-identify-page" target="_blank">iNaturalist's How to Identify</a> </li>
+              <li><a href=" https://help.inaturalist.org/en/support/solutions/articles/151000170788-how-to-use-the-identify-page-video-tutorial" target="_blank"> iNaturalist's video tutorial</a> </li>
+              <li><a href="https://forum.inaturalist.org/t/identification-etiquette-on-inaturalist-wiki/1503" target="_blank"> Identifying Etiquette</a> </li>
+             </ul>
+     </div>
+    </div>
+    <div><br></div>
+    <div class="row row-no-gutters">
+    <div style="align-content: center; background: #e0e0e0; border-radius: 5px; padding: 5px; border-color: black;">
+     <h4>No time like the present!</h4>
+        Follow the links below to start identifying within these taxon groups 
+    <div class="row row-no-gutters"> 
+     <div class="col-sm-5">
+        <ul>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Mollusca&place_id=47" target="_blank"> Mollusks</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Chromista&place_id=47" target="_blank"> Algae</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Fungi&place_id=47" target="_blank"> Fungi</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Arachnida&place_id=47" target="_blank"> Spiders & Allies</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Insecta&place_id=47" target="_blank"> Insects</a> </li>
+        </ul>
+     </div>
+     <div class="col-sm-5">
+        <ul>
+        <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Plantae&place_id=47" target="_blank"> Plants</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Mammalia&place_id=47" target="_blank"> Mammals</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Amphibia&place_id=47" target="_blank"> Amphibians</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Aves&place_id=47" target="_blank"> Birds</a> </li>
+         <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Reptilia&place_id=47" target="_blank"> Reptiles</a> </li>
+        </ul>
+     </div>
+    </div>  
+     </div>
+     </div>   
+    <div class="row row-no-gutters">
+    <div>
+    <h4 style = "text-align: center;">Everyone's doing it - join in on the fun!</h4>
+    <p style="text-align: center;"><span id="NumberIdentifiers" style="font-size: 2.5em"></span> users have identified <br>observations since 11-01-2024!</p>
+    </div>
+    </div>   
+    </div>
+ </div>
+ <div class="row row-no-gutters">
+    <div class="col-sm-4">
+      <h4 style="text-align: center;">Observation breakdown</h4>
+      <div id="currentObsDoughnut"></div>
+    </div>
+    <div class="col-sm-4">
+     <div class="row row-no-gutters" style="background-color: #e0e0e0; border-radius: 5px; padding: 5px; height: 100%; align-content: center;">
+     <div class="col-sm-4">
+    <div style="margin: auto; display: block; background-color: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
+        <h4>Percentage of observations</h4> 
+        The percentage of each iconic taxon that need additional identifications to reach research grade are displayed in figure to the right. A more complete circle indicates that iconic taxon has lots of observations classified as 'Needs ID'.
+    </div>
+     </div>
+    <div class="col-sm-8">
+           <div style="align-content: center; display: block;" id="open_pie_me_please"></div>
+     </div>
+    </div>
+    </div>
+    <div class="col-sm-4">
+     <div>
+        <h3>Identification Leaderboard</h3>
+        <table id="identifierTable" style="width: 45%;">
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Username</th>
+                  <th>Identifications</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- JavaScript will populate this section -->
+          </tbody>
+        </table>
+    </div>
+    </div>
+ </div>
+</div>
+</body>
+
+</html>
