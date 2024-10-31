@@ -6,8 +6,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 
 var baseURL = "https://api.inaturalist.org/v1/observations/identifiers?project_id=vermont-atlas-of-life&updated_since="
-var missionStart = "10-29-2024"
-var perPage = "&per_page=10"
+var missionStart = "11-01-2024";
+var perPage = "&per_page=10";
 
 // Create variables to populate with the API calls 
 var num_iders = 0;
@@ -54,7 +54,7 @@ idicon = data.map(function(d){
                     {"userid": iduser},
                     {"numids": idcount}];
     console.log(fulldata);
-
+ 
     // Populate the table
     populateTable(idicon, iduser, idcount);
 }

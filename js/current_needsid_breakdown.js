@@ -159,5 +159,5 @@ var sppQueriesTot = [];
 
     render_open_pie({data: data3,
                      htmlID: "open_pie_me_please",
-                     width_val: 200,
-                     height_val: 200});})
+                     width_val: 250,
+                     height_val: 250});})

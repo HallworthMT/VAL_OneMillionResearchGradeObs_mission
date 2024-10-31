@@ -72,7 +72,7 @@ function render_open_pie({data=data,
                                 });
                                 var lableObj = r.data.object;
                                 g.append('text')
-                                    .attr('font-size', ((3 * width) / 100))
+                                    .attr('font-size', ((3.5 * width) / 100))
                                     .attr('dominant-baseline', 'central')
                                     /*.attr('transform', "translate(" + centroid[0] + "," + (centroid[1] + 10) + ") rotate(" + (180 / Math.PI * r.startAngle + 7) + ")")
                                      .attr('alignment-baseline', 'middle')*/
