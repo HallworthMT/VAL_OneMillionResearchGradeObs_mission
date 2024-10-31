@@ -48,7 +48,7 @@
 
  /* Style the table */
  table {
-            width: 10%;
+            width: 15%;
             height: 50%;
             border-collapse: collapse;
             font-size: 10pt;
@@ -91,15 +91,40 @@
         } 
         tr:nth-child(even){background-color: #f2f2f2;}
         tr:hover {background-color: #ddd;}
+  #goal {
+  font-size: 24px;
+  text-align: right;
+  color:#006054;
+  @media only screen and (max-width : 640px) {
+    text-align: center;  
+  }}
+  #currentcount {
+  font-size: 24px;
+  text-align: center;
+  color:#006054;
+  @media only screen and (max-width : 640px) {
+    text-align: center;  
+  }}
+
+  .goal-stat {
+  float: left;
+  text-align: left;
+  font-size: 24px;
+  color:#006054;
+  padding-left: 38px;
+  margin: -35px;
+  @media only screen and (max-width : 640px) {
+    text-align: center;
+  }
+}
+
 </style>
 
 </head>
 <body> <!-- background="/img/MtMansfield_AutumnSnow_KPM.jpg" style="background-repeat: no-repeat; background-size: cover;">-->
 
 <div class="row" style="display: block; margin: auto; text-align: center; width: 90%;">
-<div background="/img/MtMansfield_AutumnSnow_KPM.jpg;" style="background-repeat: no-repeat; background-size: cover;"> 
   <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Vermont's 1,000,000 research grade challenge!</h1>
-</div>
 </div>
 
 <div style="position: absolute; left: 33%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
@@ -116,65 +141,66 @@ We don't have much time left to reach our goal. 2025 is right around the corner 
 <strong><span id="countdown" style="font-size: 12pt;"></span></strong> left!
 </div>
 
-<div style = "position: absolute; left: 10%; top: 20%; height: 12.5%; width: 25%" >
-<div id="currentObsDoughnut"></div>
+<div style = "position: absolute; left: 5%; top: 40%; width: 26%; align-content: center;">
+<h4 style="text-align: center;">Observation breakdown:</h4>
+  <div id="currentObsDoughnut"></div>
 </div>
 
+<div style="position: absolute; left: 5%; width: 10%; padding: 5px; border-radius: 5px;">
+<a href="https://val.vtecostudies.org/" target="_blank"><img src="img/VAL new VCE-LOGO_300dpi_CMYK.jpg" style="width: 475px"></a>
+  </div>
 
 <div style = "position: absolute; left: 5%; right: 33%; top: 20%; height: 12.5%; width: 25%" >
+<div id="goal">1,000,000</div>
+<div class="goal-stat">Start: 852,949</div>
 <div id="progress-container" style="width: 100%; background-color: #e0e0e0; border-radius: 10px;">
   <div id="progress-bar" style="width: 0%; height: 30px; background-color: #006054; border-radius: 10px;"></div>
 </div>
 <p id="progress-text">Progress: 0%</p>
-</div>
-
-<div class = "row" style="align-content: center";>
-
+<h3 style="text-align: center;">Current total: <span id="CurrentNeedsID" style="color: #006054;"></span></h3>
 </div>
 
 <div style = "position: absolute; left: 67%; top: 25%; height: 12.5%; width: 25%" >
-<h4>Everyone's doing it - join in the fun!</h4>
-<p><span id="NumberIdentifiers" style="font-size: 2em"></span> users have identified observations since 11-01-2024!</p>
+<h4 style = "text-align: center;">Everyone's doing it - join in on the fun!</h4>
+<p style="text-align: center;"><span id="NumberIdentifiers" style="font-size: 2.5em"></span> users have identified <br>observations since 11-01-2024!</p>
 </div>
 
-
-<div style="position: absolute; top: 40%; left: 33%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
-<p>Percentage of observations for each iconic taxon that need additional identifications to reach research grade</p>
+<div class="row" style="position: absolute; top: 40%; left: 33%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
+<div class = "col-md-6">
+ <p><strong>Percentage of observations</strong> for each iconic taxon that need additional identifications to reach research grade</p>
 <div style="align-content: center;" id="open_pie_me_please"></div>
-
-<div>
- <p>Follow the links below to start identifying observations within the most needed groups</p> 
+</div>
+<div class = "col-md-6">
+ <p><strong>No time like the present!</strong> Follow the links below to start identifying observations within the most needed groups</p> 
  <ul>
-  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Plantae&place_id=47" target="_blank"> Plants</a> </li>
-  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Insecta&place_id=47" target="_blank"> Insects</a> </li>
-  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Arachnida&place_id=47" target="_blank"> Spiders & Allies</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Molluska&place_id=47" target="_blank"> Mollusks</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Chromista&place_id=47" target="_blank"> Algae</a> </li>
   <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Fungi&place_id=47" target="_blank"> Fungi</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Arachnida&place_id=47" target="_blank"> Spiders & Allies</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Insecta&place_id=47" target="_blank"> Insects</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Plantae&place_id=47" target="_blank"> Plants</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Mammalia&place_id=47" target="_blank"> Mammals</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Amphibia&place_id=47" target="_blank"> Amphibians</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Aves&place_id=47" target="_blank"> Birds</a> </li>
+  <li><a href="https://www.inaturalist.org/observations/identify?iconic_taxa=Reptilia&place_id=47" target="_blank"> Reptiles</a> </li>
  </ul>
+
  </div>
 </div>
 
 
-<div style="position: absolute; left: 67%; width: 33%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
-  <p><strong>Don't know where to start?</strong></p>
-  Here are some helpful guides and links to get you started
+<div style="position: absolute; left: 67%; width: 28%; background: #e0e0e0; border-radius: 5px; padding: 10px; border-color: black;">
+  <h4>Don't know where to start?</h4>
+  We've got you covered. Here are some helpful guides to get you started
    <ul>
     <li><a href="https://help.inaturalist.org/en/support/solutions/articles/151000171681-how-to-use-the-identify-page" target="_blank">iNaturalist's How to Identify</a> </li>
     <li><a href=" https://help.inaturalist.org/en/support/solutions/articles/151000170788-how-to-use-the-identify-page-video-tutorial" target="_blank"> iNaturalist's video tutorial</a> </li>
     <li><a href="https://forum.inaturalist.org/t/identification-etiquette-on-inaturalist-wiki/1503" target="_blank"> Identifying Etiquette</a> </li>
    </ul>
-   </div>
-  </div>
-
-<div class = "col">
-<div style="border-color: #333; padding: 5px; border-radius: 5px;">
-<h4>Current count:</h4>
-<div id="CurrentNeedsID" style="font-size: 12pt; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></div>
-</div>
-</div>
 </div>
 
-</div>
-<div  style = "position: absolute; top: 38%; left: 80%; height: 12.5%; width: 25%" >
+
+<div  style = "position: absolute; top: 38%; left: 75%; height: 12.5%; width: 25%" >
 <h1>Identification <br>Leaderboard</h1>
 <table id="identifierTable">
   <thead>
